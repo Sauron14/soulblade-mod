@@ -18,13 +18,18 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Gradle Wrapper herunterladen
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.8'
+      - name: Gradle Wrapper installieren
+        run: |
+          wget https://services.gradle.org/distributions/gradle-8.8-bin.zip -O gradle.zip
+          unzip gradle.zip
+          export PATH=$PWD/gradle-8.8/bin:$PATH
+          gradle wrapper
+          chmod +x gradlew
 
       - name: Mod bauen
-        run: gradle build --no-daemon
+        run: |
+          export PATH=$PWD/gradle-8.8/bin:$PATH
+          ./gradlew build --no-daemon
         env:
           GRADLE_OPTS: "-Xmx4g -Xms1g"
 
