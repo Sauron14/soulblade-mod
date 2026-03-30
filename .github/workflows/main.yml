@@ -18,11 +18,13 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Gradle ausfuehrbar machen
-        run: chmod +x ./gradlew
+      - name: Gradle Wrapper herunterladen
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.8'
 
       - name: Mod bauen
-        run: ./gradlew build --no-daemon
+        run: gradle build --no-daemon
         env:
           GRADLE_OPTS: "-Xmx4g -Xms1g"
 
