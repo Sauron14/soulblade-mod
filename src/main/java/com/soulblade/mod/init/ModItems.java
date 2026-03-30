@@ -4,6 +4,7 @@ import com.soulblade.mod.SoulBladeMod;
 import com.soulblade.mod.item.SoulBladeSword;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,14 +22,14 @@ public class ModItems {
     public static final RegistryObject<SoulBladeSword> SOUL_BLADE =
             ITEMS.register("soul_blade", () -> new SoulBladeSword(
                     Tiers.NETHERITE,
-                    9,    // attackDamageModifier -> 9 + 1 (sword base) = 10 damage
-                    -2.4f, // attackSpeedModifier
-                    new Item.Properties()
+                    new Item.Properties().attributes(
+                            SwordItem.createAttributes(Tiers.NETHERITE, 9, -2.4f)
+                    )
             ));
 
     @SubscribeEvent
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == net.minecraft.world.item.CreativeModeTabs.COMBAT) {
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(SOUL_BLADE);
         }
     }
