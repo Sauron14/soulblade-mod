@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[dependencies.soulblade]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.soulblade]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.21,1.22)"
+    ordering="NONE"
+    side="BOTH"
+
+[[mods]]
+modId="soulblade"
+version="1.0.0"
+displayName="Soul Blade"
+description='''
+A powerful sword that stores the souls of slain enemies.
+Kill 20 mobs to charge the Soul Inferno ability.
+Press R to unleash blue fire and bonus damage for 60 seconds!
+'''
