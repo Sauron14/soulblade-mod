@@ -3,9 +3,7 @@ package com.soulblade.mod.network;
 import com.soulblade.mod.item.SoulBladeSword;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
+import net.minecraftforge.network.SimpleChannel;
 
 public class AbilityActivationPacket {
 
@@ -15,8 +13,7 @@ public class AbilityActivationPacket {
 
     public void toBytes(FriendlyByteBuf buf) {}
 
-    public boolean handle(Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
+    public void handle(SimpleChannel.MessageBuilder.Context context) {
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
             if (player != null) {
@@ -24,6 +21,5 @@ public class AbilityActivationPacket {
             }
         });
         context.setPacketHandled(true);
-        return true;
     }
 }
